@@ -209,11 +209,15 @@ namespace Proyecto_catedra_09T
                 if (carnets[i] == CarnetBuscado)
                 {
                     Encontrado = true;
+                    break;
+                    if (!Encontrado)
+                    {
+                        Console.ForegroundColor = ConsoleColor.Green;
+                        Console.WriteLine("/n/t/t Estudiante Encontrado: ");
+                        Console.WriteLine("/t/t Nombre {0}", nombres[i]);
+                        Console.ResetColor();
+                    }
 
-                    Console.ForegroundColor = ConsoleColor.Green;
-                    Console.WriteLine("/n/t/t Estudiante Encontrado: ");
-                    Console.WriteLine("/t/t Nombre {0}", nombres[i]);
-                    Console.ResetColor();
 
                     int nota;
                     // Matematica 
