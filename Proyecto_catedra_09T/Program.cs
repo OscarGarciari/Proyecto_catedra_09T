@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -15,11 +16,14 @@ namespace Proyecto_catedra_09T
         static string[] nombres = new string[50]; // Arreglo para almacenar los nombres de los estudiantes
         static int[] edades = new int[50]; // Arreglo para almacenar las edades de los estudiantes
         static int contador = 0; // Contador para llevar el registro de la cantidad de estudiantes registrados
+        static int[] notaMatematicas = new int[50];
+        static int[] notaCiencias = new int[50];
+        static int[] notalenguaje = new int[50];
         static void Main(string[] args)
         {
             Console.BackgroundColor = ConsoleColor.DarkGray;
             Console.Clear();
-            Console.Title = "PROYECTO DE CÁTEDRA - Fase 1"; 
+            Console.Title = "PROYECTO DE CÁTEDRA - Fase 1";
 
             int opcion = 0; // Variable para capturar la elección del usuario
 
@@ -123,7 +127,7 @@ namespace Proyecto_catedra_09T
                     Console.ForegroundColor = ConsoleColor.DarkRed;
                     Console.WriteLine("\n\t\t\t  Error: El nombre es obligatorio y no puede ser solo espacios.");
                 }
-            } while (string.IsNullOrWhiteSpace(nombreIngresado)); 
+            } while (string.IsNullOrWhiteSpace(nombreIngresado));
             // Se repite el ciclo mientras el nombre ingresado sea null, esté vacío o contenga solo espacios
 
 
@@ -181,5 +185,95 @@ namespace Proyecto_catedra_09T
             Console.WriteLine("\n\t\t\t Presione Enter para volver al menú.");
             Console.ReadLine();
         }
+        static void RegistrarCalificasiones()
+        {
+            Console.Clear();
+            Console.WriteLine("/n/t/t ****************** REGISTR0 DE CALIFICASIONES *************************");
+
+            if (contador == 0)
+            {
+                Console.ForegroundColor = ConsoleColor.DarkRed;
+                Console.WriteLine("/n/t/t Error:  No Hay Estudiantes Registrados: ");
+                Console.ResetColor();
+                Console.ReadLine();
+                return;
+            }
+
+            Console.Write("/n/t/t Ingrese El Carnet Del Estudiante: ");
+            string CarnetBuscado = Console.ReadLine();
+
+          bool Encontrado = false;
+
+           for (int i = 0; i < contador; i++)
+           {
+                if (carnets[i] == CarnetBuscado)
+                {
+                    Encontrado = true;
+
+                    Console.ForegroundColor = ConsoleColor.Green;
+                    Console.WriteLine("/n/t/t Estudiante Encontrado: ");
+                    Console.WriteLine("/t/t Nombre {0}", nombres[i]);
+                    Console.ResetColor();
+
+                    int nota;
+                    // Matematica 
+                    do
+                    {
+                        Console.Write("/n/t/t Ingrese Nota De Matematica (0-10): ");
+                    } while (!int.TryParse(Console.ReadLine(), out nota) || nota < 0 || nota > 10);
+                    notaMatematicas[i] = nota;
+                    // Ciencia 
+                    do
+                    {
+                        Console.Write("/n/t/t Ingrese Nota De Ciencia: ");
+                    } while (!int.TryParse(Console.ReadLine(), out nota) || nota < 0 || nota > 10);
+                    notaCiencias[i] = nota;
+                    // Lenguaje 
+                    do
+                    {
+                        Console.Write("/n/t/t Ingrese Nota De L enguaje: ");
+                    } while (!int.TryParse(Console.ReadLine(), out nota) || nota < 0 || nota > 10);
+                    notalenguaje[i] = nota;
+
+                    Console.ForegroundColor = ConsoleColor.Green;
+                    Console.WriteLine("/n/t/t Calificasiones Registradas con exito. ");
+                    Console.ResetColor();
+
+                }
+           }
+
+        }
+
+               
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
